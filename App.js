@@ -1,5 +1,6 @@
 import React from 'react';
-import{ Text, View, StyleSheet, Image } from 'react-native';
+import{ Text, View, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
+import {log} from "expo/build/devtools/logger";
 //asi se importaria una imagen si estuviera guardada en la carpeta assets y la llamo en source entre llaves con el nombre de la variable
 //import image from './assets/mia.jpg';
 const App = () => {
@@ -11,6 +12,16 @@ const App = () => {
     source={{ uri: "https://picsum.photos/200/200"}}
     style={styles.img}
     />
+    <TouchableOpacity
+      onPress={() => Alert.alert("Button pressed")}
+      style={styles.button}
+    >
+
+      <Text style={styles.buttonText}>Click me</Text>
+    </TouchableOpacity>
+
+
+
   </View>
 );
 }
@@ -19,9 +30,18 @@ const styles = StyleSheet.create({
     flex:1 ,
     justifyContent: "center" ,
     alignItems: "center",
-    backgroundColor: "#87ccea"
+    backgroundColor: "#edd2eb"
   },
   title: { fontSize: 30 } ,
-    img: { width: 200, height: 200, borderRadius: 100}
+    img: { width: 200, height: 200, borderRadius: 100},
+    button: {
+      backgroundColor: "#b854b2",
+      padding: 8,
+      borderRadius: 5,
+      marginTop: 10},
+    buttonText: {
+    color: "#fff",
+    fontSize: 20
+  }
 });
 export default App;
