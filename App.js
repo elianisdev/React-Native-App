@@ -1,9 +1,21 @@
 import React from 'react';
-import{ Text, View, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
-import {log} from "expo/build/devtools/logger";
+import{ Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import * as ImagePicker from "expo-image-picker";
+
+
 //asi se importaria una imagen si estuviera guardada en la carpeta assets y la llamo en source entre llaves con el nombre de la variable
 //import image from './assets/mia.jpg';
 const App = () => {
+  let openImagePickerAsync = async () => {
+   let permissionResult = await ImagePicker.getMediaLibraryPermissionsAsync()
+
+    if (permissionResult.granted === false){
+      alert("Permission to access camera roll is required!");
+      return;
+    }
+    let pickerResult = await ImagePicker.launchImageLibraryAsync();
+    console.log(pickerResult);
+  }
   return (
   <View style={styles.container}>
     <Text style={styles.title}> Hello World </Text>
@@ -13,7 +25,7 @@ const App = () => {
     style={styles.img}
     />
     <TouchableOpacity
-      onPress={() => Alert.alert("Button pressed")}
+      onPress={openImagePickerAsync}
       style={styles.button}
     >
 
